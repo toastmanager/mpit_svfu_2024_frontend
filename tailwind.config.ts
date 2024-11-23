@@ -10,6 +10,7 @@ export default {
   theme: {
 	fontFamily: {
 		sans: ['var(--font-bebas-neue-pro)'],
+		serif: ['var(--font-bergamasco)']
 	},
   	extend: {
   		colors: {
