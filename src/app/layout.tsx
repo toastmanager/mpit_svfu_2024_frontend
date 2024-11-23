@@ -185,7 +185,7 @@ export default function RootLayout({
     <html lang="ru">
       <body
         className={`${bebasNeueProExpanded.variable} ${bergamasco.variable} antialiased dark font-medium
-      bg-[radial-gradient(circle_at_8%_50%,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-30% bg-no-repeat`}
+      bg-[radial-gradient(circle_at_100px_800px,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-30% bg-no-repeat`}
       >
         {children}
       </body>

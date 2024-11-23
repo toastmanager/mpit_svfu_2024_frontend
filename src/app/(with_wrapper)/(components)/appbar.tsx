@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 const AppBar = () => {
   return (
-    <section className="bg-background w-full h-[50px] px-4 xl:px-0">
+    <section className="bg-background w-full px-4 xl:px-0 pb-[10px] pt-[9px]">
       <div className='flex flex-wrap justify-between text-primary text-base max-w-[1200px] mx-auto space-x-1 text-right'>
         <Link href={'/'}>
-          <span className="text-4xl">якутия go</span>
+          <span className="text-[38px]">якутия go</span>
         </Link>
         <Link href={'/'}>
           <span>
