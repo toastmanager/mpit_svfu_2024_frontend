@@ -8,7 +8,7 @@ const UserPublishedPlaces = async ({
   params: { uuid: string };
 }) => {
   const { uuid } = await params;
-  const places = await placesService.getUserDrafts(uuid);
+  const places = await placesService.getUserPublished(uuid);
   return (
     <>
       <ProfileTabs uuid={uuid} path={''} className='mb-[50px]'/>
