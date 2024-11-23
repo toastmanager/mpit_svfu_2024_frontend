@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="">
-          <span>Copyright © 2024 ООО "ЯГО" | Все права защищены</span>
+          <span>Copyright © 2024 ООО &quot;ЯГО&quot; | Все права защищены</span>
         </div>
       </div>
     </section>

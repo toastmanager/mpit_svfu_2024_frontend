@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import api from "@/lib/api-client";
+import api from '@/lib/api-client';
 import {
   createContext,
   useEffect,
   useLayoutEffect,
   useState,
   useContext,
-} from "react";
+} from 'react';
 
 interface AuthContextType {
-  user: UserEntity | null;
+  user: User | null;
   setAccessToken: (token: string | null) => void;
-  setUser: (user: UserEntity | null) => void;
+  setUser: (user: User | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -27,24 +27,13 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<UserEntity | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isRetry, setIsRetry] = useState<boolean>(false);
 
-  const fetchMe = async () => {
-    try {
-      const response = await api.post("auth/me", accessToken);
-      console.log(response.data);
-      setUser(response.data);
-    } catch (error) {
-      console.warn(error);
-      setUser(null);
-    }
-  };
-
   const fetchAccessToken = async () => {
     try {
-      const response = await api.post("auth/refresh", undefined, {
+      const response = await api.post('auth/refresh', undefined, {
         withCredentials: true,
       });
       console.log(response);
@@ -62,6 +51,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
+    const fetchMe = async () => {
+      try {
+        const response = await api.post('auth/me', accessToken);
+        console.log(response.data);
+        setUser(response.data);
+      } catch (error) {
+        console.warn(error);
+        setUser(null);
+      }
+    };
+
     if (accessToken) {
       fetchMe();
     }
@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
 
         return Promise.reject(error);
-      }
+      },
     );
 
     return () => {

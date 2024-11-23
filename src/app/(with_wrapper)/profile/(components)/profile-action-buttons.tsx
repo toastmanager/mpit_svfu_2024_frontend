@@ -6,7 +6,7 @@ import { useAuth } from "@/providers/auth-provider";
 const ProfileActionButtons = ({ profileId }: { profileId: string }) => {
   const { user } = useAuth();
 
-  if (profileId === user?.id) {
+  if (profileId === user?.uuid) {
     return (
       <div className="flex flex-col mt-5 md:mt-0 gap-1">
         <Button
