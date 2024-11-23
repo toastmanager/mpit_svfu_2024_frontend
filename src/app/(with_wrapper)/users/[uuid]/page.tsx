@@ -1,18 +1,20 @@
-import usersService from '@/services/users-service';
-import ProfileCard from '../(components)/profile-card';
-import UserPlacesSection from './user-places-section';
+import placesService from '@/services/places-service';
+import PlacesSection from './places-section';
+import ProfileTabs from './profile-tabs';
 
-const ProfilePage = async ({ params }: { params: { uuid: string } }) => {
+const UserPublishedPlaces = async ({
+  params,
+}: {
+  params: { uuid: string };
+}) => {
   const { uuid } = await params;
-  const user = await usersService.getUser(uuid);
-
+  const places = await placesService.getUserDrafts(uuid);
   return (
-    <section className="max-w-[1200px] mx-auto pt-[60px]">
-      <ProfileCard user={user} />
-      <br />
-      <UserPlacesSection userUUID={user.uuid} />
-    </section>
+    <>
+      <ProfileTabs uuid={uuid} path={''} className='mb-[50px]'/>
+      <PlacesSection places={places} />
+    </>
   );
 };
 
-export default ProfilePage;
+export default UserPublishedPlaces;

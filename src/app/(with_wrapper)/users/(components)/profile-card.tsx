@@ -1,9 +1,21 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import ProfileActionButtons from './profile-action-buttons';
+import { twMerge } from 'tailwind-merge';
 
-const ProfileCard = ({ user }: { user: User }) => {
+const ProfileCard = ({
+  user,
+  className,
+}: {
+  user: User;
+  className?: string;
+}) => {
   return (
-    <div className="mx-4 md:mx-auto bg-card text-card-foreground rounded-3xl relative">
+    <div
+      className={twMerge(
+        'mx-4 md:mx-auto bg-card text-card-foreground rounded-3xl relative',
+        className,
+      )}
+    >
       <div
         className="w-full h-52 bg-cover bg-center rounded-t-3xl bg-gray-500"
         style={{ backgroundImage: `url(${user.bannerUrl})` }}
@@ -26,7 +38,9 @@ const ProfileCard = ({ user }: { user: User }) => {
 
           <div className="flex flex-wrap gap-5 mt-3">
             <div>
-              <p className="text-xs text-book text-foreground-alternative">Опубликовано</p>
+              <p className="text-xs text-book text-foreground-alternative">
+                Опубликовано
+              </p>
               <p className="text-sm font-bold">{user.publishedPlaces} мест</p>
             </div>
 
