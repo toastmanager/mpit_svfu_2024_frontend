@@ -32,7 +32,7 @@ export default {
         background: 'hsl(var(--background))',
         foreground: {
           DEFAULT: 'hsl(var(--foreground))',
-          alternative: 'hsl(var(--foreground-alternative))'
+          alternative: 'hsl(var(--foreground-alternative))',
         },
         card: {
           DEFAULT: 'hsl(var(--card))',

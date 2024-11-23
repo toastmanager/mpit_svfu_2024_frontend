@@ -11,15 +11,15 @@ const ProfileActionButtons = ({ profileId }: { profileId: string }) => {
       <div className="flex flex-col mt-5 md:mt-0 gap-1">
         <Button
           variant="outline"
-          className="w-48 bg-card hover:bg-card border-primary text-primary"
+          className="w-48 bg-card hover:bg-card border-primary text-primary text-base"
         >
           Редактировать
         </Button>
         <Button
-          variant="outline"
-          className="w-48 bg-primary text-primary-foreground hover:bg-primary hover:opacity-85 hover:text-primary-foreground"
+          variant="default"
+          className="w-48 bg-primary shadow-[0_0px_26.4px_0px_rgba(0,0,0,0.3)] shadow-primary text-base"
         >
-          Создать тур
+          Добавить место
         </Button>
       </div>
     );
