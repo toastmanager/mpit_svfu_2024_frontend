@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="m-auto max-w-[1200px] text-base text-primary-alternative border-primary border-t-2 flex flex-col items-center pb-6 px-4 xl:px-0">
         <div className="flex flex-wrap justify-between w-full items mt-11 mb-24">
           <div className="w-32">
-            <span className='text-primary'>якутия go</span>
+            <span className='text-primary font-serif'>якутия go</span>
           </div>
 
           <div className="flex gap-x-11">

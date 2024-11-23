@@ -68,6 +68,43 @@ const bebasNeuePro = localFont({
   variable: '--font-bebas-neue-pro',
 });
 
+const bergamasco = localFont({
+  src: [
+    {
+      path: './fonts/BergamascoBold.otf',
+      weight: '700',
+      style: 'normal'
+    },
+    {
+      path: './fonts/BergamascoBoldItalic.ttf',
+      weight: '700',
+      style: 'italic'
+    },
+    {
+      path: './fonts/BergamascoRegular.otf',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: './fonts/BergamascoRegularItalic.ttf',
+      weight: '400',
+      style: 'italic'
+    },
+    
+    {
+      path: './fonts/BergamascoLight.otf',
+      weight: '300',
+      style: 'normal'
+    },
+    {
+      path: './fonts/BergamascoLightItalic.ttf',
+      weight: '300',
+      style: 'italic'
+    },
+  ],
+  variable: '--font-bergamasco'
+});
+
 export const metadata: Metadata = {
   title: 'Якутия GO',
   description: 'Портал для туристов и местных жителей',
@@ -81,7 +118,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body
-        className={`${bebasNeuePro.variable} antialiased dark font-normal
+        className={`${bebasNeuePro.variable} ${bergamasco.variable} antialiased dark font-normal
       bg-[radial-gradient(circle_at_8%_50%,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-30% bg-no-repeat`}
       >
         {children}
