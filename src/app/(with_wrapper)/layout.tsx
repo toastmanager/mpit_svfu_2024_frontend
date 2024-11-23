@@ -1,5 +1,5 @@
-import AppBar from "./(components)/appbar";
-import Footer from "./(components)/footer";
+import AppBar from './(components)/appbar';
+import Footer from './(components)/footer';
 
 const WrapperLayout = ({
   children,
@@ -9,7 +9,7 @@ const WrapperLayout = ({
   return (
     <>
       <AppBar />
-      {children}
+      <main className="min-h-[calc(100vh-50px)]">{children}</main>
       <Footer />
     </>
   );

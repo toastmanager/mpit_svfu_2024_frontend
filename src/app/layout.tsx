@@ -80,7 +80,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${bebasNeuePro.variable} antialiased dark`}>
+      <body
+        className={`${bebasNeuePro.variable} antialiased dark font-normal
+      bg-[radial-gradient(circle_at_8%_50%,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-30% bg-no-repeat`}
+      >
         {children}
       </body>
     </html>

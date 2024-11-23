@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <section className="w-full bg-background">
+    <section className="w-full">
       <div className="m-auto max-w-[1200px] text-base text-primary-alternative border-primary border-t-2 flex flex-col items-center pb-6 px-4 xl:px-0">
         <div className="flex flex-wrap justify-between w-full items mt-11 mb-24">
           <div className="w-32">
