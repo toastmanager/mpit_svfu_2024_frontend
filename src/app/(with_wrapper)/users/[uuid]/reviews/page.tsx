@@ -6,8 +6,6 @@ const ProfileReviews = async ({ params }: { params: { uuid: string } }) => {
   const { uuid } = await params;
   const reviews = await reviewsService.getByUser(uuid);
 
-  console.log(reviews);
-
   return (
     <>
       <ProfileTabs uuid={uuid} path={'reviews'} className="mb-[50px]" />
