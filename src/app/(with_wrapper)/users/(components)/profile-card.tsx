@@ -41,7 +41,7 @@ const ProfileCard = ({
               <p className="text-xs text-book text-foreground-alternative">
                 Опубликовано
               </p>
-              <p className="text-sm font-bold">{user.publishedPlaces} мест</p>
+              <p className="text-sm font-bold">{user.publishedPlacesNum} мест</p>
             </div>
 
             <div>
@@ -51,7 +51,7 @@ const ProfileCard = ({
 
             <div>
               <p className="text-xs text-book">Рейтинг</p>
-              <p className="text-sm font-bold">{user.score}</p>
+              <p className="text-sm font-bold">{user.score ?? 'Отсутвстует'}</p>
             </div>
           </div>
         </div>

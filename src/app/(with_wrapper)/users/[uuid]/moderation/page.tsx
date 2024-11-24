@@ -1,18 +1,34 @@
-import placesService from '@/services/places-service';
-import PlacesSection from '../places-section';
-import ProfileTabs from '../profile-tabs';
+'use client';
 
-const ProfileModerationPlaces = async ({
-  params,
-}: {
-  params: { uuid: string };
-}) => {
-  const { uuid } = await params;
-  const places = await placesService.getUserModerations(uuid);
+import ProfileTabs from '../profile-tabs';
+import { notFound, useParams } from 'next/navigation';
+import { useAuth } from '@/providers/auth-provider';
+import placesService from '@/services/places-service';
+import { useQuery } from '@tanstack/react-query';
+import PlacesSection from '../places-section';
+
+const ProfileModerationPlaces = ({ params }: { params: { uuid: string } }) => {
+  const { uuid } = useParams<{ uuid: string }>();
+  const { accessToken } = useAuth();
+
+  if (!accessToken) {
+    notFound();
+  }
+
+  const { isPending, error, data } = useQuery({
+    queryKey: ['profileModerationPlaces'],
+    queryFn: () => placesService.getUserModerations(uuid, accessToken),
+  });
+
   return (
     <>
       <ProfileTabs uuid={uuid} path={'moderation'} className="mb-[50px]" />
-      <PlacesSection places={places} />
+      {isPending && 'Загрузка...'}
+      {!isPending && data && data.length > 0 ? (
+        <PlacesSection places={data} />
+      ) : (
+        <span>Мест на модерации нет</span>
+      )}
     </>
   );
 };

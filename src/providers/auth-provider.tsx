@@ -11,12 +11,14 @@ import {
 
 interface AuthContextType {
   user: User | null;
+  accessToken: string | null;
   setAccessToken: (token: string | null) => void;
   setUser: (user: User | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
+  accessToken: null,
   setAccessToken: () => {},
   setUser: () => {},
 });
@@ -115,7 +117,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: user, setAccessToken: setAccessToken, setUser: setUser }}
+      value={{
+        user: user,
+        accessToken: accessToken,
+        setAccessToken: setAccessToken,
+        setUser: setUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
