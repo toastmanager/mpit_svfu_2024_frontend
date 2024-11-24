@@ -5,7 +5,7 @@ import { notFound, useParams } from 'next/navigation';
 import { useAuth } from '@/providers/auth-provider';
 import placesService from '@/services/places-service';
 import { useQuery } from '@tanstack/react-query';
-import PlacesSection from '../places-section';
+import PlacesSection from '../../../../../components/places-section';
 
 const ProfileModerationPlaces = ({ params }: { params: Promise<{ uuid: string }>; }) => {
   const { uuid } = useParams<{ uuid: string }>();

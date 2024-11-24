@@ -1,6 +1,5 @@
-import Image from "next/image";
-import PlacesSection from "./users/[uuid]/places-section";
 import placesService from "@/services/places-service";
+import PlacesSection from "../../components/places-section";
 
 export default async function Home() {
   const places = await placesService.getRecent()

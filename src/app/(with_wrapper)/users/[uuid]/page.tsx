@@ -1,5 +1,5 @@
 import placesService from '@/services/places-service';
-import PlacesSection from './places-section';
+import PlacesSection from '../../../../components/places-section';
 import ProfileTabs from './profile-tabs';
 
 const UserPublishedPlaces = async ({

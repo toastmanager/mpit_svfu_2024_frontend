@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import PlacesSection from './places-section';
 
 const meta = {
