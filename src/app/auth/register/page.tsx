@@ -11,6 +11,7 @@ import {
 import { Input } from '@/components/ui/input';
 import usersService from '@/services/users-service';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -51,7 +52,7 @@ const RegisterPage = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="m-auto w-[260px] flex flex-col gap-4"
+        className="m-auto w-[260px] flex flex-col gap-4 text-center"
       >
         <span className="text-xl">Вход в аккаунт</span>
         <FormField
@@ -113,6 +114,7 @@ const RegisterPage = () => {
         <Button type="submit" className="w-full">
           <span>Зарегистрироваться</span>
         </Button>
+        <span>Уже есть аккаунт? <Link href={`/auth/login`} className='text-primary'>Войти в профиль</Link></span>
       </form>
     </Form>
   );

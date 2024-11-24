@@ -1,6 +1,11 @@
 import api from "@/lib/api-client";
 
 class PlacesService {
+  async getRecent(): Promise<Place[]> {
+    const items = (await api.get(`places/`)).data;
+    return items;
+  }
+
   async getUserPublished(userUUID: string): Promise<Place[]> {
     const items = (await api.get(`places/user/${userUUID}/places`)).data;
     return items;
