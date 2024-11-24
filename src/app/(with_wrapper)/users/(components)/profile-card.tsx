@@ -41,7 +41,7 @@ const ProfileCard = ({
               <p className="text-xs text-book text-foreground-alternative">
                 Опубликовано
               </p>
-              <p className="text-sm font-bold">{user.publishedPlaces} мест</p>
+              <p className="text-sm font-bold">{user.publishedPlacesNum} мест</p>
             </div>
 
             <div>

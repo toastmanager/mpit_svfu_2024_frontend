@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { AuthProvider } from '@/providers/auth-provider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // const bebasNeuePro = localFont({
 //   src: [
@@ -171,6 +173,8 @@ const bergamasco = localFont({
   variable: '--font-bergamasco',
 });
 
+const queryClient = new QueryClient();
+
 export const metadata: Metadata = {
   title: 'Якутия GO',
   description: 'Портал для туристов и местных жителей',
@@ -187,7 +191,11 @@ export default function RootLayout({
         className={`${bebasNeueProExpanded.variable} ${bergamasco.variable} antialiased dark font-medium
       bg-[radial-gradient(circle_at_100px_800px,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-30% bg-no-repeat`}
       >
-        {children}
+        <AuthProvider>
+          {/* <QueryClientProvider client={queryClient}> */}
+            {children}
+          {/* </QueryClientProvider> */}
+        </AuthProvider>
       </body>
     </html>
   );

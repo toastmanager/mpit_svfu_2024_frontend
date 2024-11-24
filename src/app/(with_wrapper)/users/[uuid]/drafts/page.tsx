@@ -1,15 +1,22 @@
-import placesService from '@/services/places-service';
-import PlacesSection from '../places-section';
-import ProfileTabs from '../profile-tabs';
+'use client';
 
-const ProfileDraftPlaces = async ({ params }: { params: { uuid: string } }) => {
-  const { uuid } = await params;
-  const places = await placesService.getUserDrafts(uuid);
+import ProfileTabs from '../profile-tabs';
+import { useAuth } from '@/providers/auth-provider';
+import { notFound, useParams } from 'next/navigation';
+import React from 'react';
+
+const ProfileDraftPlaces = () => {
+  const { uuid } = useParams<{ uuid: string }>();
+  const { accessToken } = useAuth();
+
+  if (!accessToken) {
+    notFound();
+  }
 
   return (
     <>
       <ProfileTabs uuid={uuid} path={'drafts'} className="mb-[50px]" />
-      <PlacesSection places={places} />
+      {/* {!isPending && placeDrafts && <PlacesSection places={placeDrafts} />} */}
     </>
   );
 };

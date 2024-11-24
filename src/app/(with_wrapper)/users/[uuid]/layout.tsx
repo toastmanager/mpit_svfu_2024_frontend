@@ -1,7 +1,7 @@
 import usersService from '@/services/users-service';
 import ProfileCard from '../(components)/profile-card';
 
-const ProfielLayout = async ({
+const ProfileLayout = async ({
   children,
   params,
 }: {
@@ -19,4 +19,4 @@ const ProfielLayout = async ({
   );
 };
 
-export default ProfielLayout;
+export default ProfileLayout;

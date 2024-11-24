@@ -25,7 +25,7 @@ const ProfileTabs = ({
     {
       icon: 'mage:flag-fill',
       path: '',
-      name: 'Мои места',
+      name: 'Места пользователя',
     },
     {
       icon: 'mage:pen-fill',
