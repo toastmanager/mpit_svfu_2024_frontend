@@ -3,12 +3,12 @@ import usersService from "./users-service";
 
 class PlacesService {
   async getUserPublished(userUUID: string): Promise<Place[]> {
-    const items = (await api.get(`users/${userUUID}/places`)).data;
+    const items = (await api.get(`places/user/${userUUID}/places`)).data;
     return items;
   }
 
   async getUserDrafts(userUUID: string, accessToken: string): Promise<Place[]> {
-    const items = (await api.get(`users/${userUUID}/drafts`, {
+    const items = (await api.get(`places/user/${userUUID}/drafts`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
@@ -17,7 +17,7 @@ class PlacesService {
   }
 
   async getUserModerations(userUUID: string, accessToken: string): Promise<Place[]> {
-    const items = (await api.get(`users/${userUUID}/on_moderation`, {
+    const items = (await api.get(`places/user/${userUUID}/on_moderation`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }

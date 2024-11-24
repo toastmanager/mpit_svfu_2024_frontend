@@ -9,6 +9,8 @@ const PlaceCard = ({
   place: Place;
   className?: string;
 }) => {
+  console.log(place)
+
   return (
     <Link
       href={`/places/${place.id}`}
