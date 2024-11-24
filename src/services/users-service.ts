@@ -19,6 +19,14 @@ class UsersService {
     });
   }
 
+  async register(email: string, fullname: string, password: string): Promise<any> {
+    return api.post('auth/register', {
+      email: email,
+      fullname: fullname,
+      password: password,
+    });
+  }
+
   async logout() {
     return api.post('auth/logout');
   }
