@@ -2,7 +2,7 @@ import reviewsService from '@/services/reviews-service';
 import ProfileTabs from '../profile-tabs';
 import ReviewCard from '@/components/review-card';
 
-const ProfileReviews = async ({ params }: { params: { uuid: string } }) => {
+const ProfileReviews = async ({ params }: { params: Promise<{ uuid: string }> }) => {
   const { uuid } = await params;
   const reviews = await reviewsService.getByUser(uuid);
 

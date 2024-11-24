@@ -7,7 +7,7 @@ import placesService from '@/services/places-service';
 import { useQuery } from '@tanstack/react-query';
 import PlacesSection from '../places-section';
 
-const ProfileModerationPlaces = ({ params }: { params: { uuid: string } }) => {
+const ProfileModerationPlaces = ({ params }: { params: Promise<{ uuid: string }>; }) => {
   const { uuid } = useParams<{ uuid: string }>();
   const { accessToken } = useAuth();
 

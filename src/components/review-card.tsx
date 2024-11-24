@@ -20,10 +20,10 @@ const ReviewCard = ({ review }: { review: Review }) => {
             }.`}</span>
             <div className="flex items-center">
               {...Array.from({ length: review.score }, (_, i) => {
-                return <Icon icon="mage:star-fill" className="text-primary" />;
+                return <Icon key={i} icon="mage:star-fill" className="text-primary" />;
               })}
               {...Array.from({ length: 5 - review.score }, (_, i) => {
-                return <Icon icon="mage:star" className="text-primary" />;
+                return <Icon key={i+review.score} icon="mage:star" className="text-primary" />;
               })}
               <span className="ml-1">{review.score}</span>
             </div>

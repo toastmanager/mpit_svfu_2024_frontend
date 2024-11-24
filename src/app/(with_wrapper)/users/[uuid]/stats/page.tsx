@@ -1,6 +1,6 @@
 import ProfileTabs from '../profile-tabs';
 
-const ProfileStats = async ({ params }: { params: { uuid: string } }) => {
+const ProfileStats = async ({ params }: { params: Promise<{ uuid: string }> }) => {
   const { uuid } = await params;
   return (
     <>

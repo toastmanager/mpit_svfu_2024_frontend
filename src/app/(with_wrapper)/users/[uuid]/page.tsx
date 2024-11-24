@@ -5,7 +5,7 @@ import ProfileTabs from './profile-tabs';
 const UserPublishedPlaces = async ({
   params,
 }: {
-  params: { uuid: string };
+  params: Promise<{ uuid: string }>;
 }) => {
   const { uuid } = await params;
   const places = await placesService.getUserPublished(uuid);

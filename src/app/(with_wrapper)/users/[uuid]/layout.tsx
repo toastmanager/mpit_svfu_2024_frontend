@@ -6,7 +6,7 @@ const ProfileLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: { uuid: string };
+  params: Promise<{ uuid: string }>;
 }) => {
   const { uuid } = await params;
   const user = await usersService.getUser(uuid);
