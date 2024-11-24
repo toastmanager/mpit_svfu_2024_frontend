@@ -1,5 +1,4 @@
 import api from "@/lib/api-client";
-import usersService from "./users-service";
 
 class PlacesService {
   async getUserPublished(userUUID: string): Promise<Place[]> {
