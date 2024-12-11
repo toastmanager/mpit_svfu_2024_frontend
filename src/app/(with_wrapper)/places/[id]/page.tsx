@@ -7,8 +7,6 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
   const { id } = await params;
   const place = await placesService.getById(id);
 
-  console.log(place);
-
   return (
     <div className="min-h-full flex justify-center">
       <main className="max-w-[1200px] w-full mt-5 mb-10">
