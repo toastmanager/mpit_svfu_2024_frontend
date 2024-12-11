@@ -1,17 +1,17 @@
 import placesService from '@/services/places-service';
 import PlacesSection from '../../../../components/places-section';
-import ProfileTabs from './profile-tabs';
+import ProfileTabs from './(components)/profile-tabs';
 
 const UserPublishedPlaces = async ({
   params,
 }: {
-  params: Promise<{ uuid: string }>;
+  params: Promise<{ id: number }>;
 }) => {
-  const { uuid } = await params;
-  const places = await placesService.getUserPublished(uuid);
+  const { id } = await params;
+  const places = await placesService.getUserPublished(id);
   return (
     <>
-      <ProfileTabs uuid={uuid} path={''} className="mb-[50px]" />
+      <ProfileTabs id={id} path={''} className="mb-[50px]" />
       {places.length > 0 ? (
         <PlacesSection places={places} />
       ) : (

@@ -1,5 +1,5 @@
-type Review = {
-  uuid?: string;
+type PlaceReview = {
+  id?: number;
   author?: User;
   score: number;
   text: string;

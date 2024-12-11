@@ -1,8 +1,8 @@
 import api from '@/lib/api-client';
 
 class UsersService {
-  async getUser(uuid: string): Promise<User> {
-    const user: User = (await api.get(`users/${uuid}`)).data;
+  async getUser(id: number): Promise<User> {
+    const user: User = (await api.get(`users/${id}`)).data;
 
     return {
       avatarUrl: 'https://www.kinofilms.ua/images/person/big/121.jpg',

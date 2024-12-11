@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     user: {
-      uuid: 'some-random-uuid',
+      id: 'some-random-id',
       fullname: 'Пупкин Василий',
     }
   }

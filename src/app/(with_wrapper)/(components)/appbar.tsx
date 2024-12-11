@@ -24,6 +24,11 @@ import usersService from '@/services/users-service';
 const AppBar = () => {
   const { user } = useAuth();
 
+  const logout = async () => {
+    await usersService.logout();
+    window.location.href = '/'
+  }
+
   return (
     <section className="bg-background w-full px-4 xl:px-0 pb-[10px] pt-[9px]">
       <div className="flex flex-wrap justify-between text-primary text-base max-w-[1200px] mx-auto space-x-1 text-right">
@@ -62,7 +67,7 @@ const AppBar = () => {
                 <Button
                   variant={'destructive'}
                   type="submit"
-                  onClick={usersService.logout}
+                  onClick={logout}
                 >
                   Да
                 </Button>
@@ -79,7 +84,7 @@ const AppBar = () => {
               <DropdownMenuContent>
                 <DropdownMenuItem>
                   <Link
-                    href={`/users/${user.uuid}`}
+                    href={`/users/${user.id}`}
                     className="flex gap-1 items-center"
                   >
                     <Icon icon="mage:home" />

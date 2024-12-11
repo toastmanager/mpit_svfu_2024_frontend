@@ -55,7 +55,7 @@ const ProfileCard = ({
             </div>
           </div>
         </div>
-        <ProfileActionButtons profileId={user.uuid} />
+        <ProfileActionButtons profileId={user.id} />
       </div>
     </div>
   );

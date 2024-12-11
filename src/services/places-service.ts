@@ -1,32 +1,61 @@
-import api from "@/lib/api-client";
+import api from '@/lib/api-client';
 
 class PlacesService {
   async getRecent(): Promise<Place[]> {
-    const items = (await api.get(`places/`)).data;
+    const items: Place[] = (await api.get(`places/`)).data;
+    for (const i in items) {
+      const imageUrls = (await api.get(`places/${items[i].id}/images`)).data;
+      items[i] = { ...items[i], imageUrls: imageUrls };
+    }
     return items;
   }
 
-  async getUserPublished(userUUID: string): Promise<Place[]> {
-    const items = (await api.get(`places/user/${userUUID}/places`)).data;
+  async getUserPublished(userId: number): Promise<Place[]> {
+    const items = (await api.get(`places/user/${userId}`)).data;
+    for (const i in items) {
+      const imageUrls = (await api.get(`places/${items[i].id}/images`)).data;
+      items[i] = { ...items[i], imageUrls: imageUrls };
+    }
     return items;
   }
 
-  async getUserDrafts(userUUID: string, accessToken: string): Promise<Place[]> {
-    const items = (await api.get(`places/user/${userUUID}/drafts`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })).data;
+  async getUserDrafts(userId: number, accessToken: string): Promise<Place[]> {
+    const items = (
+      await api.get(`places/user/${userId}/drafts`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+    ).data;
+    for (const i in items) {
+      const imageUrls = (await api.get(`places/${items[i].id}/images`)).data;
+      items[i] = { ...items[i], imageUrls: imageUrls };
+    }
     return items;
   }
 
-  async getUserModerations(userUUID: string, accessToken: string): Promise<Place[]> {
-    const items = (await api.get(`places/user/${userUUID}/on_moderation`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })).data;
+  async getUserModerations(
+    userId: number,
+    accessToken: string,
+  ): Promise<Place[]> {
+    const items = (
+      await api.get(`places/user/${userId}/on_moderation`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+    ).data;
+    for (const i in items) {
+      const imageUrls = (await api.get(`places/${items[i].id}/images`)).data;
+      items[i] = { ...items[i], imageUrls: imageUrls };
+    }
     return items;
+  }
+
+  async getById(id: number): Promise<Place> {
+    const item = (await api.get(`places/${id}`)).data;
+    const imageUrls = (await api.get(`places/${id}/images`)).data;
+    return { ...item, imageUrls: imageUrls };
   }
 }
 

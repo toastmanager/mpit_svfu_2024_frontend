@@ -1,6 +1,7 @@
 type User = {
-  uuid: string;
+  id: number;
   fullname: string;
+  description?: string;
   email?: string;
   score?: number;
   publishedPlacesNum?: number;

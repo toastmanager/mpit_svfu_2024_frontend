@@ -1,14 +1,14 @@
 'use client';
 
-import ProfileTabs from '../profile-tabs';
+import ProfileTabs from '../(components)/profile-tabs';
 import { notFound, useParams } from 'next/navigation';
 import { useAuth } from '@/providers/auth-provider';
 import placesService from '@/services/places-service';
 import { useQuery } from '@tanstack/react-query';
 import PlacesSection from '../../../../../components/places-section';
 
-const ProfileModerationPlaces = ({ params }: { params: Promise<{ uuid: string }>; }) => {
-  const { uuid } = useParams<{ uuid: string }>();
+const ProfileModerationPlaces = () => {
+  const { id } = useParams<{ id: string }>();
   const { accessToken } = useAuth();
 
   if (!accessToken) {
@@ -17,18 +17,18 @@ const ProfileModerationPlaces = ({ params }: { params: Promise<{ uuid: string }>
 
   const { isPending, error, data } = useQuery({
     queryKey: ['profileModerationPlaces'],
-    queryFn: () => placesService.getUserModerations(uuid, accessToken),
+    queryFn: () => placesService.getUserModerations(+id, accessToken),
   });
 
   return (
     <>
-      <ProfileTabs uuid={uuid} path={'moderation'} className="mb-[50px]" />
+      <ProfileTabs id={+id} path={'moderation'} className="mb-[50px]" />
       {isPending && 'Загрузка...'}
-      {!isPending && data && data.length > 0 ? (
+      {!isPending && !error && (data && data.length > 0 ? (
         <PlacesSection places={data} />
       ) : (
         <span>Мест на модерации нет</span>
-      )}
+      ))}
     </>
   );
 };

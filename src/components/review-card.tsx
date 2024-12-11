@@ -1,11 +1,15 @@
 import { Icon } from '@iconify/react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import Link from 'next/link';
 
-const ReviewCard = ({ review }: { review: Review }) => {
+const ReviewCard = ({ review }: { review: PlaceReview }) => {
   return (
     <div className="bg-card p-5 rounded-lg">
       <div className="flex justify-between items-start">
-        <div className="flex gap-[10px] mb-3">
+        <Link
+          href={`/users/${review.author?.id}`}
+          className="flex gap-[10px] mb-3"
+        >
           <Avatar className="h-[50px] w-[50px]">
             <AvatarImage
               src={review.author?.avatarUrl}
@@ -15,20 +19,31 @@ const ReviewCard = ({ review }: { review: Review }) => {
             <AvatarFallback>{review.author?.fullname[0]}</AvatarFallback>
           </Avatar>
           <div className="my-auto font-normal">
-            <span>{`${review.author?.fullname.split(' ')[1]} ${
-              review.author?.fullname[0]
-            }.`}</span>
+            <span>{review.author?.fullname}</span>
             <div className="flex items-center">
               {...Array.from({ length: review.score }, (_, i) => {
-                return <Icon key={i} icon="mage:star-fill" className="text-primary" />;
+                return (
+                  <Icon
+                    key={i}
+                    icon="mage:star-fill"
+                    className="text-primary"
+                  />
+                );
               })}
               {...Array.from({ length: 5 - review.score }, (_, i) => {
-                return <Icon key={i+review.score} icon="mage:star" className="text-primary" />;
+                return (
+                  <Icon
+                    key={i + review.score}
+                    icon="mage:star"
+                    className="text-primary"
+                  />
+                );
               })}
               <span className="ml-1">{review.score}</span>
             </div>
           </div>
-        </div>
+        </Link>
+
         <span className="text-sm">
           {review.createdAt?.toLocaleString('ru', {
             year: 'numeric',

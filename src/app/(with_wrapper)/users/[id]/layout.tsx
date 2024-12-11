@@ -6,10 +6,10 @@ const ProfileLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ uuid: string }>;
+  params: Promise<{ id: number }>;
 }) => {
-  const { uuid } = await params;
-  const user = await usersService.getUser(uuid);
+  const { id } = await params;
+  const user = await usersService.getUser(id);
 
   return (
     <section className="max-w-[1200px] mx-auto pt-[60px]">

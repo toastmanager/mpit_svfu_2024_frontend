@@ -13,12 +13,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     review: {
-      uuid: 'some-random-uuid',
+      id: 'some-random-id',
       score: 4,
       text: 'Отлично!',
       createdAt: new Date(),
       author: {
-        uuid: 'some-random-uuid',
+        id: 'some-random-id',
         fullname: 'Пупкин Василий Васильевич'
       }
     }

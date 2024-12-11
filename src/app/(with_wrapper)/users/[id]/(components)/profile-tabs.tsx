@@ -12,11 +12,11 @@ interface ProfileTabData {
 }
 
 const ProfileTabs = ({
-  uuid,
+  id,
   path,
   className,
 }: {
-  uuid: string;
+  id: number;
   path: string;
   className?: string;
 }) => {
@@ -33,7 +33,7 @@ const ProfileTabs = ({
     },
   ];
 
-  if (user && uuid === user.uuid) {
+  if (user && id == user.id) {
     tabs.push(
       {
         icon: 'mage:pen-fill',
@@ -49,15 +49,15 @@ const ProfileTabs = ({
   }
 
   tabs.push(
-    {
-      icon: 'ion:binoculars-sharp',
-      path: 'stats',
-      name: 'Статистика',
-    },
+    // {
+    //   icon: 'ion:binoculars-sharp',
+    //   path: 'stats',
+    //   name: 'Статистика',
+    // },
     {
       icon: 'mage:star-fill',
       path: 'reviews',
-      name: 'Отзывы',
+      name: 'Недавние отзывы',
     },
   );
 
@@ -67,7 +67,7 @@ const ProfileTabs = ({
         return (
           <Link
             key={index}
-            href={`/users/${uuid}/${tab.path}`}
+            href={`/users/${id}/${tab.path}`}
             className={twMerge(
               tabClass,
               tab.path === path

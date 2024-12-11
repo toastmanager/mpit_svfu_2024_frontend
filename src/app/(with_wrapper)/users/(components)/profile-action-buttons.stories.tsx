@@ -12,6 +12,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    profileId: "some-random-uuid"
+    profileId: "some-random-id"
   }
 };

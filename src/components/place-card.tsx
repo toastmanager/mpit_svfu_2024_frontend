@@ -26,7 +26,7 @@ const PlaceCard = ({
         <div className="flex absolute bottom-0 w-full justify-between">
           <div className="flex items-center bg-card pl-3 pr-4 py-1 rounded-tr-lg">
             <Icon icon="mage:location" className="mr-1 text-primary" />
-            <span>{place.region}</span>
+            <span>{place.locationName}</span>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@ const PlaceCard = ({
           <div className="flex items-center gap-1">
             <Icon icon="mage:star-fill" className="text-primary text-xl" />
             <span className="text-xl font-semibold">
-              {place.score ?? '4.4'}
+              {place.score ?? '?'}
             </span>
           </div>
         </div>

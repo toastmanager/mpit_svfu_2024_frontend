@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         withCredentials: true,
       });
       console.log(response);
-      setAccessToken(response.data.access_token);
+      setAccessToken(response.data.accessToken);
       setIsRetry(false);
     } catch (error) {
       setAccessToken(null);

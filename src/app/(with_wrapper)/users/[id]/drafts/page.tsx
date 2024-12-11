@@ -1,6 +1,6 @@
 'use client';
 
-import ProfileTabs from '../profile-tabs';
+import ProfileTabs from '../(components)/profile-tabs';
 import { useAuth } from '@/providers/auth-provider';
 import placesService from '@/services/places-service';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +9,7 @@ import React from 'react';
 import PlacesSection from '../../../../../components/places-section';
 
 const ProfileDraftPlaces = () => {
-  const { uuid } = useParams<{ uuid: string }>();
+  const { id } = useParams<{ id: string }>();
   const { accessToken } = useAuth();
 
   if (!accessToken) {
@@ -22,19 +22,19 @@ const ProfileDraftPlaces = () => {
     data: placeDrafts,
   } = useQuery({
     queryKey: ['profilePlacesDrafts'],
-    queryFn: () => placesService.getUserDrafts(uuid, accessToken),
+    queryFn: () => placesService.getUserDrafts(+id, accessToken),
   });
 
   return (
     <>
-      <ProfileTabs uuid={uuid} path={'drafts'} className="mb-[50px]" />
+      <ProfileTabs id={+id} path={'drafts'} className="mb-[50px]" />
       {isPending && <span>{'Загрузка...'}</span>}
       {error && <span>{error.message}</span>}
-      {!isPending && placeDrafts && placeDrafts.length > 0 ? (
+      {!isPending && !error && (placeDrafts && placeDrafts.length > 0 ? (
         <PlacesSection places={placeDrafts} />
       ) : (
         <span>Черновиков нет</span>
-      )}
+      ))}
     </>
   );
 };
