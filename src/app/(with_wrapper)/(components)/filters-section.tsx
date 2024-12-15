@@ -12,9 +12,9 @@ import {
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn, createPlacesQueries } from '@/lib/utils';
+import { Icon } from '@iconify/react/dist/iconify.js';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { CalendarIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 
@@ -71,7 +71,10 @@ const FiltersSection = ({
     });
   };
 
-  const [date, setDate] = useState<Date>();
+  const isTypesEmpty =
+    !queries.types || (queries.types && queries.types[0] == '');
+  const isActivitesEmpty =
+    !queries.activities || (queries.activities && queries.activities[0] == '');
 
   return (
     <div className="bg-card rounded-2xl p-5 space-y-3">
@@ -86,7 +89,7 @@ const FiltersSection = ({
                 !queries.start && 'text-muted-foreground',
               )}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <Icon icon={'mage:calendar'} className="mr-2 h-4 w-4" />
               {queries.start ? (
                 format(queries.start, 'PPP', { locale: ru })
               ) : (
@@ -116,7 +119,7 @@ const FiltersSection = ({
                 !queries.end && 'text-muted-foreground',
               )}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <Icon icon={'mage:calendar'} className="mr-2 h-4 w-4" />
               {queries.end ? (
                 format(queries.end, 'PPP', { locale: ru })
               ) : (
@@ -139,16 +142,22 @@ const FiltersSection = ({
         {/* <Input placeholder="Куда" /> */}
       </div>
       <div className="grid grid-flow-col gap-x-2">
-        <Input placeholder="Цена от" />
-        <Input placeholder="Цена до" />
+        <Input placeholder="Цена от" className="w-full" />
+        <Input placeholder="Цена до" className="w-full" />
 
         <Popover>
           <PopoverTrigger>
             <Input
-              placeholder="Тип места"
+              value={
+                !isTypesEmpty
+                  ? queries.types
+                      ?.map((key, _) => PLACE_TYPES.get(key)!)
+                      .join(', ')
+                  : ''
+              }
               readOnly
-              className="cursor-pointer"
-              value={queries.types?.map((key, _) => PLACE_TYPES.get(key)!)}
+              placeholder="Тип места"
+              className={'cursor-pointer w-full'}
             />
           </PopoverTrigger>
           <PopoverContent>
@@ -189,10 +198,15 @@ const FiltersSection = ({
         <Popover>
           <PopoverTrigger>
             <Input
+              value={
+                !isActivitesEmpty
+                  ? queries.activities
+                      ?.map((key, _) => ACTIVITIES.get(key)!)
+                      .join(', ')
+                  : ''
+              }
+              className={'cursor-pointer w-full'}
               placeholder="Активность"
-              readOnly
-              className="cursor-pointer"
-              value={queries.activities?.map((key, _) => ACTIVITIES.get(key)!)}
             />
           </PopoverTrigger>
           <PopoverContent>
