@@ -25,6 +25,7 @@ export default async function Home({
       ? new Date(searchParams?.end)
       : undefined
     : undefined;
+  const search: string = searchParams?.search ?? ''
 
   const places = await placesService.getRecent({
     types: types,
@@ -32,6 +33,7 @@ export default async function Home({
     activities: activities,
     start: start,
     end: end,
+    search: search
   });
 
   return (
@@ -43,6 +45,7 @@ export default async function Home({
           types: types,
           start: start,
           end: end,
+          search: search,
         }}
       />
       <br />

@@ -71,6 +71,11 @@ const FiltersSection = ({
     });
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    updateQueries({ ...queries, search: newValue });
+  };
+
   const isTypesEmpty =
     !queries.types || (queries.types && queries.types[0] == '');
   const isActivitesEmpty =
@@ -78,7 +83,7 @@ const FiltersSection = ({
 
   return (
     <div className="bg-card rounded-2xl p-5 space-y-3">
-      <Input placeholder="Поиск" />
+      <Input placeholder="Поиск" value={queries.search} onChange={handleSearchChange} />
       <div className="flex gap-x-2">
         <Popover>
           <PopoverTrigger asChild>

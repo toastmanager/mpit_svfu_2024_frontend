@@ -3,6 +3,7 @@ import { createPlacesQueries } from '@/lib/utils';
 
 class PlacesService {
   async getRecent(params?: PlaceFilters): Promise<Place[]> {
+    console.log(createPlacesQueries(params ?? {}))
     const items: Place[] = (
       await api.get(`places/${createPlacesQueries(params ?? {})}`)
     ).data;
