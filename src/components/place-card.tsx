@@ -39,7 +39,7 @@ const PlaceCard = ({
           <div className="flex items-center gap-1">
             <Icon icon="mage:star-fill" className="text-primary text-xl" />
             <span className="text-xl font-semibold">
-              {place.score ?? '?'}
+              {!place.score || place.score == 0 ? '?' : place.score}
             </span>
           </div>
         </div>

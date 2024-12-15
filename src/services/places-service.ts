@@ -1,8 +1,22 @@
 import api from '@/lib/api-client';
 
 class PlacesService {
-  async getRecent(): Promise<Place[]> {
-    const items: Place[] = (await api.get(`places/`)).data;
+  async getRecent(params?: PlaceFilters): Promise<Place[]> {
+    const typesQuery: string =
+      params?.types && params.types.length > 0 ? params.types.join(',') : '';
+    const activitiesQuery: string =
+      params?.activities && params.activities.length > 0
+        ? params.activities.join(',')
+        : '';
+    const ageRestrictionQuery: string = params?.ageRestriction
+      ? `${params?.ageRestriction}`
+      : '';
+
+    const items: Place[] = (
+      await api.get(
+        `places/?types=${typesQuery}&age_restriction=${ageRestrictionQuery}&activities=${activitiesQuery}`,
+      )
+    ).data;
     for (const i in items) {
       const imageUrls = (await api.get(`places/${items[i].id}/images`)).data;
       items[i] = { ...items[i], imageUrls: imageUrls };

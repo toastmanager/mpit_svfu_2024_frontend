@@ -11,7 +11,7 @@ const PlacesSection = ({
   return (
     <section
       className={twMerge(
-        'flex flex-wrap justify-center gap-x-[10px] xl:justify-between gap-y-5 mb-[275px]',
+        'flex flex-wrap gap-x-[10px] gap-y-5 mb-[275px]',
         className,
       )}
     >

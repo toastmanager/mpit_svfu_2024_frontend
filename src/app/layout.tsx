@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { AuthProvider } from '@/providers/auth-provider';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Providers from '@/providers/providers';
 
 // const bebasNeuePro = localFont({
@@ -188,7 +187,7 @@ export default function RootLayout({
     <html lang="ru">
       <body
         className={`${bebasNeueProExpanded.variable} ${bergamasco.variable} antialiased dark font-medium
-      bg-[radial-gradient(circle_at_100px_800px,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-30% bg-no-repeat`}
+      bg-[radial-gradient(circle_at_100px_800px,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-40% bg-no-repeat`}
       >
         <AuthProvider>
           <Providers>
