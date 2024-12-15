@@ -41,17 +41,25 @@ const ProfileCard = ({
               <p className="text-xs text-book text-foreground-alternative">
                 Опубликовано
               </p>
-              <p className="text-sm font-bold">{user.publishedPlacesNum} мест</p>
+              <p className="text-sm font-bold">
+                {user.publishedPlacesNum} мест
+              </p>
             </div>
 
             <div>
-              <p className="text-xs text-book">Всего отзывов</p>
-              <p className="text-sm font-bold">{user.totalReviews}</p>
+              <p className="text-xs text-book text-foreground-alternative">
+                Всего отзывов
+              </p>
+              <p className="text-sm font-bold">{user.totalReviewsNum}</p>
             </div>
 
             <div>
-              <p className="text-xs text-book">Рейтинг</p>
-              <p className="text-sm font-bold">{user.score ?? 'Отсутвстует'}</p>
+              <p className="text-xs text-book text-foreground-alternative">
+                Рейтинг
+              </p>
+              <p className="text-sm font-bold">
+                {!user.score || user.score == 0 ? 'Отсутствует' : user.score}
+              </p>
             </div>
           </div>
         </div>

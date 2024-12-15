@@ -30,7 +30,7 @@ const AppBar = () => {
   }
 
   return (
-    <section className="bg-background w-full px-4 xl:px-0 pb-[10px] pt-[9px]">
+    <nav className="bg-card w-full px-4 xl:px-0 pb-[10px] pt-[9px] sticky top-0 z-[9999]">
       <div className="flex flex-wrap justify-between text-primary text-base max-w-[1200px] mx-auto space-x-1 text-right">
         <Link href={'/'}>
           <span className="text-[38px]">якутия go</span>
@@ -110,7 +110,7 @@ const AppBar = () => {
           </Link>
         )}
       </div>
-    </section>
+    </nav>
   );
 };
 

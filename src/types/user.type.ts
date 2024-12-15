@@ -5,7 +5,7 @@ type User = {
   email?: string;
   score?: number;
   publishedPlacesNum?: number;
-  totalReviews?: number;
+  totalReviewsNum?: number;
   isSuperuser?: boolean;
   bannerUrl?: string | undefined;
   avatarUrl?: string | undefined;

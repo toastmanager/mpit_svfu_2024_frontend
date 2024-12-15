@@ -205,6 +205,7 @@ const FiltersSection = ({
                       .join(', ')
                   : ''
               }
+              readOnly
               className={'cursor-pointer w-full'}
               placeholder="Активность"
             />

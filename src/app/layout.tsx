@@ -186,13 +186,10 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body
-        className={`${bebasNeueProExpanded.variable} ${bergamasco.variable} antialiased dark font-medium
-      bg-[radial-gradient(circle_at_100px_800px,_var(--tw-gradient-stops))] from-primary-alternative/55 from-0% via-primary-alternative/20 to-background to-40% bg-no-repeat`}
+        className={`${bebasNeueProExpanded.variable} ${bergamasco.variable} antialiased light font-medium`}
       >
         <AuthProvider>
-          <Providers>
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </AuthProvider>
       </body>
     </html>

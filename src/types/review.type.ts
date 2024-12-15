@@ -4,4 +4,5 @@ type PlaceReview = {
   score: number;
   text: string;
   createdAt?: Date;
+  placeId: number;
 };

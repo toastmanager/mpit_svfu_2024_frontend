@@ -35,7 +35,7 @@ export default async function Home({
   });
 
   return (
-    <section className="max-w-[1200px] mx-auto">
+    <section className="max-w-[1200px] mx-auto pt-5">
       <FiltersSection
         queries={{
           activities: activities,
