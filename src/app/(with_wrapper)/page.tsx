@@ -15,11 +15,23 @@ export default async function Home({
     ? ageRestrictionNum
     : undefined;
   const activities: string[] = searchParams?.activities?.split(',') ?? [];
+  const start: Date | undefined = searchParams?.start
+    ? new Date(searchParams?.start) != null
+      ? new Date(searchParams?.start)
+      : undefined
+    : undefined;
+  const end: Date | undefined = searchParams?.end
+    ? new Date(searchParams?.end) != null
+      ? new Date(searchParams?.end)
+      : undefined
+    : undefined;
 
   const places = await placesService.getRecent({
     types: types,
     ageRestriction: ageRestriction,
     activities: activities,
+    start: start,
+    end: end,
   });
 
   return (
@@ -29,6 +41,8 @@ export default async function Home({
           activities: activities,
           ageRestriction: ageRestriction,
           types: types,
+          start: start,
+          end: end,
         }}
       />
       <br />
