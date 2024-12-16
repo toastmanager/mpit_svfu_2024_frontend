@@ -1,4 +1,7 @@
+import PlaceCard from '@/components/place-card';
+import ReviewCard from '@/components/review-card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { PLACE_TYPES } from '@/lib/utils';
 import placesService from '@/services/places-service';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
@@ -6,10 +9,13 @@ import { twMerge } from 'tailwind-merge';
 const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
   const { id } = await params;
   const place = await placesService.getById(id);
+  const nearestPlaces = await placesService.getNearest(id);
+
+  console.log(place.reviews)
 
   return (
     <div className="min-h-full flex justify-center">
-      <main className="max-w-[1200px] w-full mt-5 mb-10">
+      <main className="max-w-[1200px] w-full mt-5 mb-52">
         <div className="bg-card rounded-2xl w-full p-5">
           <span className="text-4xl font-semibold">{place.title}</span>
           <div className="mt-5 grid grid-cols-auto-fit-240 w-full gap-2 grid-rows-auto-fit-240">
@@ -27,6 +33,7 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
             ))}
           </div>
         </div>
+
         <div className="flex flex-wrap-reverse w-full justify-between mt-2">
           {/* <div className="w-[350px] space-y-2">
             <div className="rounded-2xl bg-card h-[298px] p-5">
@@ -39,14 +46,26 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
 
           <div className="w-full space-y-2">
             <div className="rounded-2xl bg-card w-full p-5 space-y-4">
-              <span className="font-semibold text-3xl">Описание места</span>
+              <span className="font-semibold text-3xl">Описание</span>
 
-              <div className="w-full flex flex-wrap gap-x-4">
+              <div className="w-full flex flex-wrap gap-x-5">
+                <div>
+                  <span className="font-semibold">Тип</span>
+                  <br />
+                  <span className="">{PLACE_TYPES.get(place.type)}</span>
+                </div>
                 <div>
                   <span className="font-semibold">Активность</span>
                   <br />
                   <span className="">Базовая</span>
                 </div>
+                {place.address && (
+                  <div>
+                    <span className="font-semibold">Адрес</span>
+                    <br />
+                    <span className="">{place.address}</span>
+                  </div>
+                )}
                 <div>
                   <span className="font-semibold">Возрастные ограничения</span>
                   <br />
@@ -57,6 +76,20 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
               <div>
                 <span className="text-base">{place.description}</span>
               </div>
+            </div>
+
+            <div className="rounded-2xl bg-card w-full p-5 space-y-4">
+              <span className="font-semibold text-3xl">Отзывы</span>
+
+              <ul>
+                {place.reviews &&
+                  place.reviews.length > 0 &&
+                  place.reviews.map((review, index) => (
+                    <li key={index}>
+                      <ReviewCard review={review} />
+                    </li>
+                  ))}
+              </ul>
             </div>
 
             <div>
@@ -78,13 +111,21 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
                       className="object-cover"
                       alt="user image"
                     />
-                    <AvatarFallback>
-                      {place.author?.fullname[0]}
-                    </AvatarFallback>
+                    <AvatarFallback>{place.author?.fullname[0]}</AvatarFallback>
                   </Avatar>
                 </div>
               </Link>
             </div>
+            <div className="pt-5">
+              <span className="font-semibold text-3xl">Ближайшие места</span>
+            </div>
+            <ul className='flex flex-wrap gap-x-2'>
+              {nearestPlaces.map((place, index) => (
+                <li>
+                  <PlaceCard place={place} key={index} className="bg-card" />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </main>

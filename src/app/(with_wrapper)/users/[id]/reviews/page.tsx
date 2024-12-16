@@ -14,11 +14,15 @@ const ProfileReviews = async ({
     <>
       <ProfileTabs id={id} path={'reviews'} className="mb-[50px]" />
       <ul className="space-y-1 mb-64">
-        {reviews.map((review, index) => (
-          <li key={index}>
-            <ReviewCard review={review} />
-          </li>
-        ))}
+        {reviews.length > 0 &&
+          reviews.map((review, index) => (
+            <li key={index}>
+              <ReviewCard review={review} />
+            </li>
+          ))}
+        {(!reviews || reviews.length == 0) && (
+          <span>У этого пользователя отсутствуют отзывы</span>
+        )}
       </ul>
     </>
   );

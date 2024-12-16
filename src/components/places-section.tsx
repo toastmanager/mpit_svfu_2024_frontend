@@ -16,7 +16,7 @@ const PlacesSection = ({
       )}
     >
       {places.map((place, index) => (
-        <PlaceCard key={index} place={place} />
+        <PlaceCard key={index} place={place} className='h-[302px]'/>
       ))}
     </section>
   );

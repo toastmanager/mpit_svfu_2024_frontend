@@ -14,3 +14,20 @@ export function createPlacesQueries(filters: PlaceFilters): string {
     filters.start ? filters.start.toISOString() : ''
   }&end=${filters.end ? filters.end.toISOString() : ''}`;
 }
+
+export const PLACE_TYPES = new Map<string, string>([
+  ['LANDMARK', 'Достопримечательность'],
+  ['MUSEUM', 'Музей'],
+  ['CAFE', 'Кафе'],
+  ['RESTAURANT', 'Ресторан'],
+  ['BAR', 'Бар'],
+  ['MOVIE_THEATER', 'Кинотеатр'],
+  ['NATURE', 'Природа'],
+]);
+
+export const ACTIVITIES = new Map<string, string>([
+  ['SMALL', 'Низкая'],
+  ['MEDIUM', 'Средняя'],
+  ['ADVANCED', 'Продвинутая'],
+  ['HIGH', 'Высокая'],
+]);

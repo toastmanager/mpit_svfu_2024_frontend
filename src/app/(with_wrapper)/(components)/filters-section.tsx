@@ -11,26 +11,12 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { cn, createPlacesQueries } from '@/lib/utils';
+import { ACTIVITIES, cn, createPlacesQueries, PLACE_TYPES } from '@/lib/utils';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
-
-const PLACE_TYPES = new Map<string, string>([
-  ['LANDMARK', 'Достопримечательность'],
-  ['MUSEUM', 'Музей'],
-  ['CAFE', 'Кафе'],
-  ['RESTAURANT', 'Ресторан'],
-]);
-
-const ACTIVITIES = new Map<string, string>([
-  ['SMALL', 'Низкая'],
-  ['MEDIUM', 'Средняя'],
-  ['ADVANCED', 'Продвинутая'],
-  ['HIGH', 'Высокая'],
-]);
 
 const FiltersSection = ({
   queries = {
