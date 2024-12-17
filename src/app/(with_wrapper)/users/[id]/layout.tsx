@@ -1,4 +1,4 @@
-import usersService from '@/services/users-service';
+import usersService from '@/services/users.service';
 import ProfileCard from '../(components)/profile-card';
 
 const ProfileLayout = async ({

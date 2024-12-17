@@ -1,4 +1,4 @@
-import placesService from '@/services/places-service';
+import placesService from '@/services/places.service';
 import PlacesSection from '../../../../components/places-section';
 import ProfileTabs from './(components)/profile-tabs';
 

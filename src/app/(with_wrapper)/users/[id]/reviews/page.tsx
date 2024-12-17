@@ -1,4 +1,4 @@
-import reviewsService from '@/services/reviews-service';
+import reviewsService from '@/services/reviews.service';
 import ProfileTabs from '../(components)/profile-tabs';
 import ReviewCard from '@/components/review-card';
 

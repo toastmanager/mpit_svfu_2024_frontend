@@ -19,7 +19,7 @@ import { useAuth } from '@/providers/auth-provider';
 import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Button } from '@/components/ui/button';
-import usersService from '@/services/users-service';
+import usersService from '@/services/users.service';
 
 const AppBar = () => {
   const { user } = useAuth();
@@ -42,20 +42,20 @@ const AppBar = () => {
             мест [в Якутии]
           </span>
         </Link>
-        <Link href={'/'}>
+        {/* <Link href={'/routes'}>
           <span>
-            составить
+            популярные
             <br />
-            маршрут
+            маршруты
           </span>
-        </Link>
-        <Link href={'/'}>
+        </Link> */}
+        {/* <Link href={'/'}>
           <span>
             забронировать отель
             <br />
             для всей семьи
           </span>
-        </Link>
+        </Link> */}
         {user ? (
           <Dialog>
             <DialogContent>

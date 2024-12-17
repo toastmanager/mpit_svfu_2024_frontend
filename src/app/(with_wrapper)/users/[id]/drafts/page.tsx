@@ -2,7 +2,7 @@
 
 import ProfileTabs from '../(components)/profile-tabs';
 import { useAuth } from '@/providers/auth-provider';
-import placesService from '@/services/places-service';
+import placesService from '@/services/places.service';
 import { useQuery } from '@tanstack/react-query';
 import { notFound, useParams } from 'next/navigation';
 import React from 'react';

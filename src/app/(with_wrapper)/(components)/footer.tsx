@@ -11,9 +11,9 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-x-11">
-            <Link href={'/forum'}>
+            {/* <Link href={'/forum'}>
               <span>Наш форум</span>
-            </Link>
+            </Link> */}
             <Link href={'/about'}>
               <span>О нас</span>
             </Link>

@@ -2,7 +2,7 @@ import PlaceCard from '@/components/place-card';
 import ReviewCard from '@/components/review-card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PLACE_TYPES } from '@/lib/utils';
-import placesService from '@/services/places-service';
+import placesService from '@/services/places.service';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 
@@ -10,8 +10,6 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
   const { id } = await params;
   const place = await placesService.getById(id);
   const nearestPlaces = await placesService.getNearest(id);
-
-  console.log(place.reviews)
 
   return (
     <div className="min-h-full flex justify-center">
@@ -119,10 +117,10 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
             <div className="pt-5">
               <span className="font-semibold text-3xl">Ближайшие места</span>
             </div>
-            <ul className='flex flex-wrap gap-x-2'>
+            <ul className='flex flex-wrap gap-x-2 gap-y-4'>
               {nearestPlaces.map((place, index) => (
-                <li>
-                  <PlaceCard place={place} key={index} className="bg-card" />
+                <li key={index}>
+                  <PlaceCard place={place} className="bg-card" />
                 </li>
               ))}
             </ul>
