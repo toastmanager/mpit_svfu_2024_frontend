@@ -52,7 +52,7 @@ export default async function Home({
       {places && places.length > 0 ? (
         <PlacesSection
           places={places}
-          className="max-w-[1200px] justify-center"
+          className="max-w-[1200px]"
         />
       ) : (
         <div className="mt-16 text-center">

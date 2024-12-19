@@ -6,6 +6,7 @@ type User = {
   score?: number;
   publishedPlacesNum?: number;
   totalReviewsNum?: number;
+  isVerified?: boolean;
   isSuperuser?: boolean;
   bannerUrl?: string | undefined;
   avatarUrl?: string | undefined;

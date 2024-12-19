@@ -1,30 +1,50 @@
+import api from '@/lib/api-client';
+import placesService from './places.service';
+
 class RoutesService {
-  async addPlace(routeId: number, placeId: number): Promise<Route> {
-    return {
-      places: [],
-      title: '',
-    };
+  async switchPlace(routeId: number, placeId: number): Promise<Route> {
+    const data = (await api.patch(`routes/${routeId}/places/${placeId}`)).data;
+    return data;
   }
 
-  async removePlace(routeId: number, placeId: number): Promise<void> {}
-
-  async createRoute(routeId: number, placeId: number): Promise<Route> {
-    return {
-      places: [],
-      title: '',
-    };
+  async removePlace(routeId: number, placeId: number): Promise<void> {
+    const data = (await api.delete(`routes/${routeId}/places/${placeId}`, {}))
+      .data;
+    return data;
   }
 
-  async deleteRoute(routeId: number): Promise<void> {}
+  async createRoute(route: Route): Promise<Route> {
+    throw new Error('Not implemented');
+  }
 
-  async getRoute(routeId: number): Promise<Route> {
-    return {
-      places: [],
-      title: '',
-    };
+  async deleteRoute(routeId: number): Promise<void> {
+    const message = (await api.delete(`routes/${routeId}`)).data;
+    return message;
+  }
+
+  async getRoute(routeId: number): Promise<Route | undefined> {
+    const route: Route = (await api.get(`routes/${routeId}`)).data;
+    const places = [];
+    for (const place of route.places!) {
+      places.push(await placesService.getById(place.id!));
+    }
+    return { ...route, places: places };
   }
   async getUserRoutes(userId: number): Promise<Route[]> {
-    return [];
+    throw new Error('Not implemented');
+  }
+
+  async getCurrentUserRoutes(): Promise<Route[]> {
+    const routes = (
+      await api.get('routes/me', {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+    ).data;
+
+    return routes;
   }
 }
 

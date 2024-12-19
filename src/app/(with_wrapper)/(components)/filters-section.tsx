@@ -37,8 +37,7 @@ const FiltersSection = ({
   const handleAgeRestrictionChange = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    let newValue = e.target.value;
-    const numericValue = newValue.replace(/[^0-9]/g, '');
+    const numericValue = e.target.value.replace(/[^0-9]/g, '');
     setAgeRestrictionsValue(
       !isNaN(Number(numericValue)) ? Number(numericValue) : undefined,
     );

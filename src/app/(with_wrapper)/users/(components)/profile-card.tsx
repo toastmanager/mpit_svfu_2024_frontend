@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import ProfileActionButtons from './profile-action-buttons';
 import { twMerge } from 'tailwind-merge';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 const ProfileCard = ({
   user,
@@ -33,6 +34,12 @@ const ProfileCard = ({
           <div className="flex">
             <h1 className="flex items-center text-2xl gap-2 font-bold">
               <span>{user.fullname}</span>
+              {user.isVerified && (
+                <Icon
+                  icon="mage:check-circle-fill"
+                  className="w-5 text-primary"
+                />
+              )}
             </h1>
           </div>
 

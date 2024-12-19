@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { AuthProvider } from '@/providers/auth-provider';
 import Providers from '@/providers/providers';
+import { RoutesProvider } from '@/providers/routes.provider';
 
 // const bebasNeuePro = localFont({
 //   src: [
@@ -189,7 +190,9 @@ export default function RootLayout({
         className={`${bebasNeueProExpanded.variable} ${bergamasco.variable} antialiased light font-medium`}
       >
         <AuthProvider>
-          <Providers>{children}</Providers>
+          <RoutesProvider>
+            <Providers>{children}</Providers>
+          </RoutesProvider>
         </AuthProvider>
       </body>
     </html>

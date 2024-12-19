@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
       console.log(response);
       setAccessToken(response.data.accessToken);
+      localStorage.setItem('accessToken', response.data.accessToken)
       setIsRetry(false);
     } catch (error) {
       setAccessToken(null);

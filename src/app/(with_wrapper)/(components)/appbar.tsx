@@ -42,13 +42,13 @@ const AppBar = () => {
             мест [в Якутии]
           </span>
         </Link>
-        {/* <Link href={'/routes'}>
+        <Link href={'/routes'}>
           <span>
-            популярные
+            ваши
             <br />
             маршруты
           </span>
-        </Link> */}
+        </Link>
         {/* <Link href={'/'}>
           <span>
             забронировать отель
