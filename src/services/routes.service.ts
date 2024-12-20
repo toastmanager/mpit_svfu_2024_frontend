@@ -14,7 +14,10 @@ class RoutesService {
   }
 
   async createRoute(route: Route): Promise<Route> {
-    throw new Error('Not implemented');
+    const result = (await api.post(`routes`, {
+      title: route.title,
+    })).data;
+    return result
   }
 
   async deleteRoute(routeId: number): Promise<void> {

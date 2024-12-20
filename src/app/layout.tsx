@@ -4,6 +4,7 @@ import './globals.css';
 import { AuthProvider } from '@/providers/auth-provider';
 import Providers from '@/providers/providers';
 import { RoutesProvider } from '@/providers/routes.provider';
+import { Toaster } from '@/components/ui/toaster';
 
 // const bebasNeuePro = localFont({
 //   src: [
@@ -191,7 +192,10 @@ export default function RootLayout({
       >
         <AuthProvider>
           <RoutesProvider>
-            <Providers>{children}</Providers>
+            <Providers>
+              {children}
+              <Toaster />
+            </Providers>
           </RoutesProvider>
         </AuthProvider>
       </body>
