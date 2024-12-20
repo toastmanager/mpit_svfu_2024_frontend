@@ -26,8 +26,8 @@ const AppBar = () => {
 
   const logout = async () => {
     await usersService.logout();
-    window.location.href = '/'
-  }
+    window.location.href = '/';
+  };
 
   return (
     <nav className="bg-card w-full px-4 xl:px-0 pb-[10px] pt-[9px] sticky top-0 z-[9999]">
@@ -42,13 +42,15 @@ const AppBar = () => {
             мест [в Якутии]
           </span>
         </Link>
-        <Link href={'/routes'}>
-          <span>
-            ваши
-            <br />
-            маршруты
-          </span>
-        </Link>
+        {user && (
+          <Link href={'/routes'}>
+            <span>
+              ваши
+              <br />
+              маршруты
+            </span>
+          </Link>
+        )}
         {/* <Link href={'/'}>
           <span>
             забронировать отель
@@ -64,11 +66,7 @@ const AppBar = () => {
                 <DialogDescription></DialogDescription>
               </DialogHeader>
               <DialogFooter>
-                <Button
-                  variant={'destructive'}
-                  type="submit"
-                  onClick={logout}
-                >
+                <Button variant={'destructive'} type="submit" onClick={logout}>
                   Да
                 </Button>
               </DialogFooter>
