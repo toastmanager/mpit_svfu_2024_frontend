@@ -54,7 +54,7 @@ const RegisterPage = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="m-auto w-[260px] flex flex-col gap-4 text-center"
       >
-        <span className="text-xl">Вход в аккаунт</span>
+        <span className="text-xl">Регистрация</span>
         <FormField
           control={form.control}
           name="email"
