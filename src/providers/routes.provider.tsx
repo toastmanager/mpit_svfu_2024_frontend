@@ -36,7 +36,7 @@ export const RoutesProvider = ({ children }: { children: React.ReactNode }) => {
     if (user) {
       fetchRoutes();
     }
-  }, [routes, user]);
+  }, [user]);
 
   return (
     <RouteContext.Provider
