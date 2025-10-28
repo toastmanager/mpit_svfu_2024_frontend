@@ -8,11 +8,10 @@ import { Input } from '@/components/ui/input';
 import { useAuth } from '@/providers/auth-provider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
-import { useEffect, useState } from 'react';
+import { useRoutes } from '@/providers/routes.provider';
 
 const routeFormSchema = z.object({
   title: z.string().min(2),
@@ -20,30 +19,8 @@ const routeFormSchema = z.object({
 
 const RoutesListPage = () => {
   const { user } = useAuth();
-  const [routes, setRoutes] = useState<Route[] | undefined>(undefined);
-
-  const { isPending, error, data } = useQuery({
-    queryKey: ['profileModerationPlaces'],
-    queryFn: () => routesService.getCurrentUserRoutes(),
-  });
-
-  useEffect(() => {
-    if (data) {
-      setRoutes(data);
-    }
-  }, [data]);
-
+  const { routes, setRoutes } = useRoutes();
   const { toast } = useToast();
-
-  if (error) {
-    return (
-      <div className="flex w-full h-full min-h-screen justify-center items-center">
-        <span className="text-2xl">
-          Произошла непредвиденная ошибка. Пожалуйста, обратитесь в поддержку
-        </span>
-      </div>
-    );
-  }
 
   const form = useForm<z.infer<typeof routeFormSchema>>({
     resolver: zodResolver(routeFormSchema),
@@ -55,8 +32,9 @@ const RoutesListPage = () => {
   const createRoute = async (values: z.infer<typeof routeFormSchema>) => {
     try {
       const result = await routesService.createRoute(values);
-      routes?.push(result);
-      setRoutes(routes);
+      const newRoutes = routes.slice();
+      newRoutes.push(result);
+      setRoutes(newRoutes);
     } catch (error) {
       console.error(error);
       toast({
@@ -68,7 +46,7 @@ const RoutesListPage = () => {
   const deleteRoute = async (id: number, index: number) => {
     try {
       await routesService.deleteRoute(id);
-      setRoutes(routes!.filter((_, routeIndex) => routeIndex !== index));
+      setRoutes(routes.filter((_, routeIndex) => routeIndex !== index));
     } catch (error) {
       console.error(error);
       toast({

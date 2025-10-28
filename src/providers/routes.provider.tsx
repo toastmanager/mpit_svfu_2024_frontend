@@ -1,7 +1,13 @@
 'use client';
 
 import routesService from '@/services/routes.service';
-import { createContext, useContext, useLayoutEffect, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import { useAuth } from './auth-provider';
 
 interface RoutesContextType {
@@ -23,7 +29,7 @@ export const RoutesProvider = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuth();
   const [routes, setRoutes] = useState<Route[]>([]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const fetchRoutes = async () => {
       try {
         const routes = await routesService.getCurrentUserRoutes();
