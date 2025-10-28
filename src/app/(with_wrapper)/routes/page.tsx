@@ -30,6 +30,7 @@ const RoutesListPage = () => {
   });
 
   const createRoute = async (values: z.infer<typeof routeFormSchema>) => {
+    form.reset();
     try {
       const result = await routesService.createRoute(values);
       const newRoutes = routes.slice();
