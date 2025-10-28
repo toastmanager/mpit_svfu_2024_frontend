@@ -62,7 +62,7 @@ const PlaceCard = ({
                             const placeIndex = routes[index].places!.findIndex(
                               (el) => el.id == place.id,
                             );
-                            const newRoutes = routes;
+                            const newRoutes = routes.slice();
                             if (placeIndex !== -1) {
                               newRoutes[index].places?.splice(placeIndex, 1);
                               setRoutes(newRoutes);
