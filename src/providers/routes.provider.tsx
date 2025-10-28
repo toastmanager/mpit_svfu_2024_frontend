@@ -1,13 +1,7 @@
 'use client';
 
 import routesService from '@/services/routes.service';
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useAuth } from './auth-provider';
 
 interface RoutesContextType {
