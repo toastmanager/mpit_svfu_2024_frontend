@@ -1,6 +1,30 @@
 import api from '@/lib/api-client';
 import { createPlacesQueries } from '@/lib/utils';
 
+export type PlaceCreateInput = {
+  title: string;
+  description: string;
+  locationName: string;
+  type:
+    | 'LANDMARK'
+    | 'RESTAURANT'
+    | 'CAFE'
+    | 'BEACH'
+    | 'BAR'
+    | 'MOVIE_THEATER'
+    | 'NATURE'
+    | 'MUSEUM'
+    | 'CONCERT';
+  activity: 'SMALL' | 'MEDIUM' | 'ADVANCED' | 'HIGH';
+  ageRestriction: number;
+  price: number;
+  longitude: number;
+  latitude: number;
+  start: Date | null;
+  end: Date | null;
+  address: string;
+};
+
 class PlacesService {
   async getRecent(params?: PlaceFilters): Promise<Place[]> {
     console.log(createPlacesQueries(params ?? {}));
@@ -83,6 +107,11 @@ class PlacesService {
       };
     }
     return items;
+  }
+
+  async create(data: PlaceCreateInput): Promise<Place> {
+    const response = await api.post('places', data);
+    return response.data;
   }
 }
 
