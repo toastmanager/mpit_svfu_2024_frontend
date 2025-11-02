@@ -176,7 +176,7 @@ const bergamasco = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Якутия GO',
+  title: 'Твой Ориентир',
   description: 'Портал для туристов и местных жителей',
 };
 
