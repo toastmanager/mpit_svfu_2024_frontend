@@ -1,6 +1,5 @@
 import PlacesSection from '@/components/places-section';
 import routesService from '@/services/routes.service';
-import { Icon } from '@iconify/react/dist/iconify.js';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 

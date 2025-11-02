@@ -113,6 +113,14 @@ class PlacesService {
     const response = await api.post('places', data);
     return response.data;
   }
+
+  async uploadSingleImage(placeId: number, formData: FormData): Promise<void> {
+    await api.post(`places/${placeId}/images`, formData);
+  }
+
+  async deleteImage(placeId: number, imageKey: string): Promise<void> {
+    await api.delete(`places/${placeId}/images/${imageKey}`);
+  }
 }
 
 export default new PlacesService();
