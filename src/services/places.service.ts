@@ -5,17 +5,8 @@ export type PlaceCreateInput = {
   title: string;
   description: string;
   locationName: string;
-  type:
-    | 'LANDMARK'
-    | 'RESTAURANT'
-    | 'CAFE'
-    | 'BEACH'
-    | 'BAR'
-    | 'MOVIE_THEATER'
-    | 'NATURE'
-    | 'MUSEUM'
-    | 'CONCERT';
-  activity: 'SMALL' | 'MEDIUM' | 'ADVANCED' | 'HIGH';
+  type: string;
+  activity: string;
   ageRestriction: number;
   price: number;
   longitude: number;

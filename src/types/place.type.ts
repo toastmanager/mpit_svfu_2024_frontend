@@ -3,6 +3,7 @@ type Place = {
   locationName: string;
   title: string;
   type: string;
+  redirectUrl?: string;
   description: string;
   imageKeys?: string[];
   imageUrls: string[];

@@ -23,6 +23,9 @@ export const PLACE_TYPES = new Map<string, string>([
   ['BAR', 'Бар'],
   ['MOVIE_THEATER', 'Кинотеатр'],
   ['NATURE', 'Природа'],
+  ['HOTEL', 'Отель'],
+  ['MOTEL', 'Мотель'],
+  ['HOSTEL', 'Хостел'],
 ]);
 
 export const ACTIVITIES = new Map<string, string>([

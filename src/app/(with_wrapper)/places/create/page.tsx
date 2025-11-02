@@ -24,6 +24,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { ACTIVITIES, PLACE_TYPES } from '@/lib/utils';
 import placesService from '@/services/places.service';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ru } from 'date-fns/locale';
@@ -32,22 +33,18 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
 
+const placeTypeKeys = Array.from(PLACE_TYPES.keys()) as [string, ...string[]];
+const placeActivityKeys = Array.from(ACTIVITIES.keys()) as [
+  string,
+  ...string[],
+];
+
 const placeFormSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   locationName: z.string().min(3),
-  type: z.enum([
-    'LANDMARK',
-    'RESTAURANT',
-    'CAFE',
-    'BEACH',
-    'BAR',
-    'MOVIE_THEATER',
-    'NATURE',
-    'MUSEUM',
-    'CONCERT',
-  ]),
-  activity: z.enum(['SMALL', 'MEDIUM', 'ADVANCED', 'HIGH']),
+  type: z.enum(placeTypeKeys),
+  activity: z.enum(placeActivityKeys),
   ageRestriction: z.number().int().min(0),
   price: z.number().min(0),
   longitude: z.number(),
@@ -55,6 +52,7 @@ const placeFormSchema = z.object({
   start: z.date().nullable(),
   end: z.date().nullable(),
   address: z.string(),
+  redirectUrl: z.string().url(),
 });
 
 type PlaceFormValues = z.infer<typeof placeFormSchema>;
@@ -82,6 +80,7 @@ const PlaceCreatePage = () => {
       start: null,
       end: null,
       address: '',
+      redirectUrl: '',
     },
   });
 
@@ -261,20 +260,16 @@ const PlaceCreatePage = () => {
                         defaultValue={field.value}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Концерт" />
+                          <SelectValue placeholder="Выберите тип" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="LANDMARK">
-                            Достопримечательность
-                          </SelectItem>
-                          <SelectItem value="RESTAURANT">Ресторан</SelectItem>
-                          <SelectItem value="CAFE">Кафе</SelectItem>
-                          <SelectItem value="BAR">Бар</SelectItem>
-                          <SelectItem value="MOVIE_THEATER">
-                            Кинотеатр
-                          </SelectItem>
-                          <SelectItem value="MUSEUM">Музей</SelectItem>
-                          <SelectItem value="CONCERT">Концерт</SelectItem>
+                          {Array.from(PLACE_TYPES.entries()).map(
+                            ([key, value]) => (
+                              <SelectItem key={key} value={key}>
+                                {value}
+                              </SelectItem>
+                            ),
+                          )}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -295,13 +290,16 @@ const PlaceCreatePage = () => {
                         defaultValue={field.value}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Низкий" />
+                          <SelectValue placeholder="Выберите уровень" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="SMALL">Низкий</SelectItem>
-                          <SelectItem value="MEDIUM">Средний</SelectItem>
-                          <SelectItem value="ADVANCED">Продвинутый</SelectItem>
-                          <SelectItem value="HIGH">Высокий</SelectItem>
+                          {Array.from(ACTIVITIES.entries()).map(
+                            ([key, value]) => (
+                              <SelectItem key={key} value={key}>
+                                {value}
+                              </SelectItem>
+                            ),
+                          )}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -312,7 +310,7 @@ const PlaceCreatePage = () => {
 
             <div className="flex justify-center gap-5">
               <div className="flex gap-1">
-                <div>
+                <div className="space-y-2">
                   <Label>Дата начала</Label>
                   <Popover open={startOpen} onOpenChange={setStartOpen}>
                     <PopoverTrigger asChild>
@@ -339,11 +337,12 @@ const PlaceCreatePage = () => {
                     </PopoverContent>
                   </Popover>
                 </div>
-                <div>
+                <div className="space-y-2">
                   <Label>Время начала</Label>
                   <Input
                     type="time"
                     id="start-time-picker"
+                    disabled={start == null}
                     onChange={(e) => {
                       const time = e.target.value;
                       if (!time || !start) return;
@@ -362,7 +361,7 @@ const PlaceCreatePage = () => {
               </div>
 
               <div className="flex gap-1">
-                <div>
+                <div className="space-y-2">
                   <Label>Дата окончания</Label>
                   <Popover open={endOpen} onOpenChange={setEndOpen}>
                     <PopoverTrigger asChild>
@@ -389,11 +388,12 @@ const PlaceCreatePage = () => {
                     </PopoverContent>
                   </Popover>
                 </div>
-                <div>
-                  <Label>Время окончания</Label>
+                <div className="space-y-2">
+                  <Label className="text-nowrap">Время окончания</Label>
                   <Input
                     type="time"
                     id="end-time-picker"
+                    disabled={end == null}
                     onChange={(e) => {
                       const time = e.target.value;
                       if (!time || !end) return;
@@ -410,6 +410,20 @@ const PlaceCreatePage = () => {
                   />
                 </div>
               </div>
+              <FormField
+                control={form.control}
+                name="redirectUrl"
+                render={({ field }) => (
+                  <FormItem className="w-full space-y-2">
+                    <FormLabel>
+                      <Label>Ссылка на страницу оплаты/подробностей</Label>
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="https://vk.com/" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
             </div>
 
             <Button type="submit" className="w-full">
