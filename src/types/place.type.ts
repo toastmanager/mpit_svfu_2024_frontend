@@ -3,6 +3,10 @@ type Place = {
   locationName: string;
   title: string;
   type: string;
+  price: number;
+  start: Date;
+  end: Date;
+  prevPrice?: number;
   redirectUrl?: string;
   description: string;
   imageKeys?: string[];

@@ -1,6 +1,7 @@
 import PlaceCard from '@/components/place-card';
 import ReviewCard from '@/components/review-card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import { PLACE_TYPES } from '@/lib/utils';
 import placesService from '@/services/places.service';
 import Link from 'next/link';
@@ -10,6 +11,8 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
   const { id } = await params;
   const place = await placesService.getById(id);
   const nearestPlaces = await placesService.getNearest(id);
+  const discountPercent =
+    (1 - (place.prevPrice ?? 0) / (place.price + 0.000000001)) * 100;
 
   return (
     <div className="min-h-full flex justify-center">
@@ -32,16 +35,7 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
           </div>
         </div>
 
-        <div className="flex flex-wrap-reverse w-full justify-between mt-2">
-          {/* <div className="w-[350px] space-y-2">
-            <div className="rounded-2xl bg-card h-[298px] p-5">
-              <span>This is page of tour with id {id}</span>
-            </div>
-            <div className="h-[149px] bg-card rounded-2xl p-5">
-              <span>This is page of tour with id {id}</span>
-            </div>
-          </div> */}
-
+        <div className="flex w-full gap-2 justify-between mt-2 items-start">
           <div className="w-full space-y-2">
             <div className="rounded-2xl bg-card w-full p-5 space-y-4">
               <span className="font-semibold text-3xl">Описание</span>
@@ -114,17 +108,75 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
                 </div>
               </Link>
             </div>
-            <div className="pt-5">
-              <span className="font-semibold text-3xl">Ближайшие места</span>
-            </div>
-            <ul className='flex flex-wrap gap-x-2 gap-y-4'>
-              {nearestPlaces.map((place, index) => (
-                <li key={index}>
-                  <PlaceCard place={place} className="bg-card" />
-                </li>
-              ))}
-            </ul>
           </div>
+
+          <div className="min-w-[350px] space-y-2 sticky top-20">
+            <div className="flex flex-col rounded-2xl bg-card gap-5 p-5">
+              <div className="flex justify-between">
+                <div className="font-bold text-xl">
+                  {place.prevPrice != null && place.prevPrice != 0 ? (
+                    <span className="text-gray-400 line-through mr-1">
+                      {place.prevPrice!}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  <span>{place.price == 0 ? 'Бесплатно' : place.price}</span>
+                </div>
+                {place.prevPrice != null && place.prevPrice != 0 && (
+                  <div className="flex text-base bg-primary text-primary-foreground rounded-md w-[44px] h-[28px] items-center justify-center font-semibold">
+                    <span>{discountPercent}%</span>
+                  </div>
+                )}
+              </div>
+              <div className="bg-background px-5 py-2 rounded-lg">
+                <span>
+                  {place.start == null && place.end == null
+                    ? 'Не ограничен по датам'
+                    : (place.start == null
+                        ? '... - '
+                        : place.start.toDateString()) &&
+                      (place.end == null ? '...' : place.end.toDateString())}
+                </span>
+              </div>
+              {place.redirectUrl != null && (
+                <Link href={place.redirectUrl}>
+                  <Button className="w-full font-semibold">Подробнее</Button>
+                </Link>
+              )}
+            </div>
+            <div className="bg-card rounded-2xl p-5 flex flex-col gap-4">
+              <Link href={`/users/${place.author!.id}`}>
+                <div className="flex gap-2 items-center">
+                  <Avatar className="h-[40px] w-[40px]">
+                    <AvatarImage
+                      src={place.author?.avatarUrl}
+                      className="object-cover"
+                      alt="user image"
+                    />
+                    <AvatarFallback>{place.author?.fullname[0]}</AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 text-sm">Автор тура</span>
+                    <span>{place.author?.fullname}</span>
+                  </div>
+                </div>
+              </Link>
+              <Button variant={'outline'} className="w-full">
+                Написать автору
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="pt-5">
+          <span className="font-semibold text-3xl">Ближайшие места</span>
+          <ul className="flex flex-wrap gap-x-2 gap-y-4">
+            {nearestPlaces.map((place, index) => (
+              <li key={index}>
+                <PlaceCard place={place} className="bg-card" />
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
     </div>
