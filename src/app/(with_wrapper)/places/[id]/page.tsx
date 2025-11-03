@@ -157,7 +157,7 @@ const PlacesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
                     <AvatarFallback>{place.author?.fullname[0]}</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
-                    <span className="text-gray-500 text-sm">Автор тура</span>
+                    <span className="text-gray-500 text-sm">Автор места</span>
                     <span>{place.author?.fullname}</span>
                   </div>
                 </div>
