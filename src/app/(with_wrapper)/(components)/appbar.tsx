@@ -31,9 +31,9 @@ const AppBar = () => {
 
   return (
     <nav className="bg-card w-full px-4 xl:px-0 pb-[10px] pt-[9px] sticky top-0 z-[9999]">
-      <div className="flex flex-wrap justify-between text-primary text-base max-w-[1200px] mx-auto space-x-1 text-right">
+      <div className="flex flex-wrap justify-between text-primary text-base max-w-[1200px] mx-auto space-x-1 text-right items-center">
         <Link href={'/'}>
-          <span className="text-[38px]">твой ориентир</span>
+          <span className="text-[38px] font-serif">твой ориентир</span>
         </Link>
         <Link href={'/'}>
           <span>
